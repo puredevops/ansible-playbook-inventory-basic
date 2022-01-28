@@ -1,0 +1,17 @@
+- name: start mysql
+  service: name=mysqld
+           enabled=yes
+           state=started
+
+- name: check mysql status
+  shell: service mysqld status
+  register: command_output
+
+- debug: var=command_output.stdout_lines
+
+- name: check mysql port
+  shell: netstat -tulnp | grep 3306
+  register: command_output
+
+- debug: var=command_output.stdout_lines
+  

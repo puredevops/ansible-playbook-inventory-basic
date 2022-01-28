@@ -1,0 +1,11 @@
+- hosts: stagingservers
+  remote_user: "centos"
+  become: yes
+  roles:
+    - mysql-status
+
+- hosts: prodservers
+  remote_user: "{{ remote_user }}"
+  become: yes
+  roles:
+    - mysql-status
